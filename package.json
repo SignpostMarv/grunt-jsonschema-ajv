@@ -1,0 +1,40 @@
+{
+  "name": "grunt-jsonschema-ajv",
+  "description": "Grunt plugin for validating files against JSON Schema with ajv",
+  "version": "0.1.0",
+  "homepage": "https://github.com/SignpostMarv/grunt-jsonschema-ajv",
+  "author": {
+    "name": "SignpostMarv",
+    "email": "me@signpostmarv.name"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SignpostMarv/grunt-jsonschema-ajv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SignpostMarv/grunt-jsonschema-ajv/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^4.0.0",
+    "grunt": "^0.4.5",
+    "grunt-eslint": "^17.3.1",
+    "json-schema": "^0.2.2",
+    "json-schema-test-suite": "0.0.10"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin",
+    "JSON",
+    "schema",
+    "validator"
+  ],
+  "dependencies": {
+    "ajv": "^3.4.0"
+  }
+}
