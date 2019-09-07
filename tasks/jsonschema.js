@@ -49,7 +49,7 @@ module.exports = function exportAjvTask(grunt) {
         } else {
           grunt.log.writeln('Preparing default validator...');
           validate = ajv.compile({
-            $schema: 'http://json-schema.org/draft-04/schema#',
+            $schema: 'http://json-schema.org/draft-07/schema#',
           });
         }
         f.src.filter(function filterSrc(filepath) {
