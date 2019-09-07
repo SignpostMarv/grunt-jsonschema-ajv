@@ -36,6 +36,30 @@ module.exports = function Gruntfile(grunt) {
           },
         ],
       },
+      draft6: {
+        files: [
+          {
+            expand: true,
+            src: jsonSchemaTestSuite + '/draft6/*.json',
+          },
+          {
+            expand: true,
+            src: jsonSchemaTestSuite + '/draft6/optional/*.json',
+          },
+        ],
+      },
+      draft7: {
+        files: [
+          {
+            expand: true,
+            src: jsonSchemaTestSuite + '/draft7/*.json',
+          },
+          {
+            expand: true,
+            src: jsonSchemaTestSuite + '/draft7/optional/*.json',
+          },
+        ],
+      },
     },
   });
 
