@@ -26,7 +26,7 @@ module.exports = function exportAjvTask(grunt) {
         if (validateSchema) {
           grunt.log.writeln('Checking if schmea exists...');
           if (!grunt.file.exists(f.dest) || grunt.file.isDir(f.dest)) {
-            grunt.log.errorlns(
+            grunt.fail.warn(
               self.target +
               ' has missing schema: "' +
               f.dest +
@@ -38,7 +38,7 @@ module.exports = function exportAjvTask(grunt) {
             schema = grunt.file.readJSON(f.dest);
             validate = ajv.compile(schema);
           } catch (err) {
-            grunt.log.errorlns(
+            grunt.fail.warn(
               'Schema "' +
               f.dest +
               '" is invalid!'
