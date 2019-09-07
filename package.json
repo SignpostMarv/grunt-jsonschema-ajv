@@ -38,6 +38,6 @@
     "ajv": "^6.10.2"
   },
   "scripts": {
-    "test": "grunt --verbose --stack"
+    "test": "grunt --verbose --debug --stack"
   }
 }
