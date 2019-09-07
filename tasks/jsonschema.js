@@ -72,21 +72,6 @@ module.exports = function exportAjvTask(grunt) {
           var filePathJson = grunt.file.readJSON(filepath);
           if (validate) {
             if (validate(filePathJson) === false) {
-              if (validateSchema) {
-                grunt.log.errorlns(
-                  'File "' +
-                  filepath +
-                  '" does not validate against schema "' +
-                  f.dest +
-                  '"'
-                );
-              } else {
-                grunt.log.errorlns(
-                  'File "' +
-                  filepath +
-                  '" does not validate against default schema'
-                );
-              }
               validate.errors.forEach(function feErrors(err) {
                 Object.keys(err).forEach(function feErr(errKey) {
                   var errOut = err[errKey];
@@ -98,6 +83,21 @@ module.exports = function exportAjvTask(grunt) {
                   grunt.log.errorlns(errKey + ': ' + errOut);
                 });
               });
+              if (validateSchema) {
+                grunt.fail.warn(
+                  'File "' +
+                  filepath +
+                  '" does not validate against schema "' +
+                  f.dest +
+                  '"'
+                );
+              } else {
+                grunt.fail.warn(
+                  'File "' +
+                  filepath +
+                  '" does not validate against default schema'
+                );
+              }
             } else {
               if (validateSchema) {
                 grunt.log.oklns(
