@@ -36,5 +36,8 @@
   ],
   "dependencies": {
     "ajv": "^3.4.0"
+  },
+  "scripts": {
+    "test": "grunt --verbose --stack"
   }
 }
