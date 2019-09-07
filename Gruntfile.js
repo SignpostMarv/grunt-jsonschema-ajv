@@ -24,7 +24,7 @@ module.exports = function Gruntfile(grunt) {
       ],
     },
     jsonschema: {
-      draft4: {
+      /*draft4: {
         files: [
           {
             expand: true,
@@ -47,7 +47,7 @@ module.exports = function Gruntfile(grunt) {
             src: jsonSchemaTestSuite + '/draft6/optional/*.json',
           },
         ],
-      },
+      },*/
       draft7: {
         files: [
           {
