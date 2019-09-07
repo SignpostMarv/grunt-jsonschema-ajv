@@ -32,7 +32,7 @@ module.exports = function exportAjvTask(grunt) {
               f.dest +
               '"'
             );
-            return;
+            return false;
           }
           try {
             schema = grunt.file.readJSON(f.dest);
@@ -44,7 +44,7 @@ module.exports = function exportAjvTask(grunt) {
               '" is invalid!'
             );
             grunt.log.errorlns(err.message);
-            return;
+            return false;
           }
         } else {
           validate = ajv.compile({
