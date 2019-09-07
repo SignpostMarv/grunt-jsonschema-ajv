@@ -38,12 +38,12 @@ module.exports = function exportAjvTask(grunt) {
             schema = grunt.file.readJSON(f.dest);
             validate = ajv.compile(schema);
           } catch (err) {
+            grunt.log.errorlns(err.message);
             grunt.fail.warn(
               'Schema "' +
               f.dest +
               '" is invalid!'
             );
-            grunt.log.errorlns(err.message);
             return false;
           }
         } else {
