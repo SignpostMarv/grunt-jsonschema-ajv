@@ -1,4 +1,4 @@
-# grunt-jsonschema-ajv
+# grunt-jsonschema-ajv [![Build Status](https://travis-ci.org/SignpostMarv/grunt-jsonschema-ajv.svg?branch=master)](https://travis-ci.org/SignpostMarv/grunt-jsonschema-ajv)
 
 > Grunt plugin for validating files against JSON Schema with ajv
 

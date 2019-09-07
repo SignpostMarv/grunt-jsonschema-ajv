@@ -26,29 +26,30 @@ module.exports = function exportAjvTask(grunt) {
         if (validateSchema) {
           grunt.log.writeln('Checking if schmea exists...');
           if (!grunt.file.exists(f.dest) || grunt.file.isDir(f.dest)) {
-            grunt.log.errorlns(
+            grunt.fail.warn(
               self.target +
               ' has missing schema: "' +
               f.dest +
               '"'
             );
-            return;
+            return false;
           }
           try {
             schema = grunt.file.readJSON(f.dest);
             validate = ajv.compile(schema);
           } catch (err) {
-            grunt.log.errorlns(
+            grunt.log.errorlns(err.message);
+            grunt.fail.warn(
               'Schema "' +
               f.dest +
               '" is invalid!'
             );
-            grunt.log.errorlns(err.message);
-            return;
+            return false;
           }
         } else {
+          grunt.verbose.writeln('Preparing default validator...');
           validate = ajv.compile({
-            $schema: 'http://json-schema.org/draft-04/schema#',
+            $schema: 'http://json-schema.org/draft-07/schema#',
           });
         }
         f.src.filter(function filterSrc(filepath) {
@@ -69,15 +70,8 @@ module.exports = function exportAjvTask(grunt) {
           return true;
         }).map(function validateFiles(filepath) {
           var filePathJson = grunt.file.readJSON(filepath);
-          if (validateSchema) {
+          if (validate) {
             if (validate(filePathJson) === false) {
-              grunt.log.errorlns(
-                'File "' +
-                filepath +
-                '" does not validate against schema "' +
-                f.dest +
-                '"'
-              );
               validate.errors.forEach(function feErrors(err) {
                 Object.keys(err).forEach(function feErr(errKey) {
                   var errOut = err[errKey];
@@ -89,14 +83,37 @@ module.exports = function exportAjvTask(grunt) {
                   grunt.log.errorlns(errKey + ': ' + errOut);
                 });
               });
+              if (validateSchema) {
+                grunt.fail.warn(
+                  'File "' +
+                  filepath +
+                  '" does not validate against schema "' +
+                  f.dest +
+                  '"'
+                );
+              } else {
+                grunt.fail.warn(
+                  'File "' +
+                  filepath +
+                  '" does not validate against default schema'
+                );
+              }
             } else {
-              grunt.log.oklns(
-                'File "' +
-                filepath +
-                '" validates against schema "' +
-                f.dest +
-                '"'
-              );
+              if (validateSchema) {
+                grunt.log.oklns(
+                  'File "' +
+                  filepath +
+                  '" validates against schema "' +
+                  f.dest +
+                  '"'
+                );
+              } else {
+                grunt.log.oklns(
+                  'File "' +
+                  filepath +
+                  '" validates against default schema'
+                );
+              }
             }
           }
         });
